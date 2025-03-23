@@ -28,7 +28,7 @@ app.use("/api/donations", donationRoutes);
 if (process.env.DB_DIALECT === "postgres")  {
     sequelize.sync({ alter: true })
         .then(() => console.log("✅ PostgreSQL models synchronized"))
-        .catch((err) => console.error("❌ Error syncing PostgreSQL models:", err));
+        .catch((err) => console.error("❌ Error syncing PostgreSQL models", err));
 }
 
 // Port
