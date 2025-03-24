@@ -1,6 +1,6 @@
 const express = require("express");
 const dotenv = require("dotenv");
-const { connectDB, sequelize } = require("./config/db");
+const connectDB = require("./config/db"); // ✅ Ensure this is correct
 
 // Load environment variables
 dotenv.config();
@@ -9,7 +9,7 @@ dotenv.config();
 const app = express();
 
 // Connect to Database
-connectDB();
+connectDB(); // ✅ Now it should work
 
 // Middleware
 app.use(express.json());
@@ -23,13 +23,6 @@ const donationRoutes = require("./routes/donationRoutes");
 app.use("/api/alerts", alertRoutes);
 app.use("/api/shelters", shelterRoutes);
 app.use("/api/donations", donationRoutes);
-
-// Synchronize Sequelize models (Only if using PostgreSQL)
-if (process.env.DB_DIALECT === "postgres")  {
-    sequelize.sync({ alter: true })
-        .then(() => console.log("✅ PostgreSQL models synchronized"))
-        .catch((err) => console.error("❌ Error syncing PostgreSQL models", err));
-}
 
 // Port
 const PORT = process.env.PORT || 5000;
