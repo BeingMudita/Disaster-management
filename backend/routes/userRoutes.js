@@ -18,20 +18,28 @@ router.post("/register", async (req, res) => {
             return res.status(400).json({ message: "NGOs must provide an identification number" });
         }
 
-        // Check if the user already exists
+        // Check if user already exists
         const existingUser = await User.findOne({ email });
         if (existingUser) {
             return res.status(400).json({ message: "User already exists" });
         }
 
-        // Hash password
-        const hashedPassword = await bcrypt.hash(password, 10);
-
-        // Create new user
-        const newUser = new User({ name, email, password: hashedPassword, address, city, state, role, identificationNumber });
-
+        // Create and save new user (password hashing is handled in the model)
+        const newUser = new User({ name, email, password, address, city, state, role, identificationNumber });
         await newUser.save();
-        res.status(201).json({ message: "User registered successfully!" });
+
+        // Generate JWT token
+        const accessToken = jwt.sign(
+            { userId: newUser._id, role: newUser.role },
+            process.env.ACCESS_TOKEN_SECRET,
+            { expiresIn: "72h" }
+        );
+
+        res.status(201).json({ 
+            message: "User registered successfully!", 
+            accessToken,
+            user: { name: newUser.name, email: newUser.email, role: newUser.role }
+        });
 
     } catch (error) {
         res.status(500).json({ error: error.message });
@@ -57,22 +65,19 @@ router.post("/login", async (req, res) => {
             return res.status(400).json({ message: "Invalid credentials" });
         }
 
+        // Generate JWT token
         const accessToken = jwt.sign(
-            { userId: user._id, role: user.role },  // Include role in token
+            { userId: user._id, role: user.role },
             process.env.ACCESS_TOKEN_SECRET,
             { expiresIn: "72h" }
         );
 
-        return res.json({
-            error: false,
-            user: {
-                name: user.name,
-                email: user.email,
-                role: user.role
-            },
-            accessToken,
+        res.json({
             message: "Login successful",
+            accessToken,
+            user: { name: user.name, email: user.email, role: user.role }
         });
+
     } catch (error) {
         res.status(500).json({ error: error.message });
     }

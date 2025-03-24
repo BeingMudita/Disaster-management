@@ -6,7 +6,7 @@ const DonationSchema = new mongoose.Schema({
     amount: { type: Number, required: true, min: 1 },
     donorEmail: { type: String, required: false }, // Optional donor email
     donorAddress: { type: String, required: false }, // Optional donor location
-    ngoId: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true }, // Reference to NGO receiving donation
+    ngoName: { type: String, required: true } // Now storing NGO name instead of ID
 }, { timestamps: true });
 
 module.exports = mongoose.model("Donation", DonationSchema);

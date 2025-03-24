@@ -34,14 +34,22 @@ router.post("/", verifyNGO, async (req, res) => {
             return res.status(400).json({ message: "All fields are required" });
         }
 
-        const newShelter = new Shelter({ name, location, capacity, contact });
-        await newShelter.save();
+        // ✅ Fix: Include 'addedBy' field from authenticated NGO
+        const newShelter = new Shelter({ 
+            name, 
+            location, 
+            capacity, 
+            contact, 
+            addedBy: req.user._id  // Store the NGO who added the shelter
+        });
 
+        await newShelter.save();
         res.status(201).json({ message: "Shelter added successfully!" });
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
 });
+
 
 // Get All Shelters
 router.get("/", async (req, res) => {

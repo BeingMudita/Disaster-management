@@ -18,11 +18,15 @@ app.use(express.json());
 const alertRoutes = require("./routes/alertRoutes");
 const shelterRoutes = require("./routes/shelterRoutes");
 const donationRoutes = require("./routes/donationRoutes");
+const userRoutes = require("./routes/userRoutes");
+
 
 // Use Routes
 app.use("/api/alerts", alertRoutes);
 app.use("/api/shelters", shelterRoutes);
 app.use("/api/donations", donationRoutes);
+app.use("/api/users", userRoutes); 
+
 
 // Port
 const PORT = process.env.PORT || 5000;
