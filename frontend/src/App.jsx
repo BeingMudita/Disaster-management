@@ -1,20 +1,25 @@
+import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import LandingPage from "./pages/LandingPage";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
-import MapPage from "./pages/MapPage"; // Import Map Page
+import Dashboard from "./pages/Dashboard";
+import Profile from "./pages/Profile";
+import Donate from "./pages/Donate";
+import Navbar from "./components/Navbar";
 
-function App() {
+const App = () => {
   return (
     <Router>
+      <Navbar />
       <Routes>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/map" element={<MapPage />} /> {/* NEW ROUTE */}
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/donate" element={<Donate />} />
       </Routes>
     </Router>
   );
-}
+};
 
 export default App;
