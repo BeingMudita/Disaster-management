@@ -26,7 +26,7 @@ const Signup = () => {
     try {
       const data = await registerUser(formData);
       alert("Signup successful! Please log in.");
-      navigate("/login");
+      navigate("/");
     } catch (err) {
       setError(err.message);
     }

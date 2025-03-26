@@ -1,25 +1,29 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import LandingPage from "./pages/LandingPage";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Dashboard from "./pages/Dashboard";
-import Profile from "./pages/Profile";
-import Donate from "./pages/Donations";
-import Navbar from "./components/Navbar";
+import Donations from "./pages/Donations";
+import Shelters from "./pages/Shelter";
+import Alerts from "./pages/Alerts";
+import CreateShelter from "./pages/CreateAlerts";
 
-const App = () => {
+function App() {
   return (
     <Router>
-      <Navbar />
       <Routes>
-        <Route path="/" element={<Login />} />
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/donate" element={<Donate />} />
+        <Route path="/donations" element={<Donations />} />
+        <Route path="/shelters" element={<Shelters />} />
+        <Route path="/alerts" element={<Alerts />} />
+        <Route path="/create-shelter" element={<CreateShelter />} />
       </Routes>
     </Router>
   );
-};
+}
 
 export default App;
