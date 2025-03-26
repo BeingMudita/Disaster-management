@@ -3,9 +3,9 @@ import Login from "../pages/Login";
 import Signup from "../pages/Signup";
 import Dashboard from "../pages/Dashboard";
 import Donations from "../pages/Donations";
-import Shelters from "../pages/Shelters";
+import Shelters from "../pages/Shelter";
 import Alerts from "../pages/Alerts";
-import CreateShelter from "../pages/CreateShelter";
+import CreateShelter from "../pages/CreateAlerts";
 
 const AppRouter = () => {
   return (

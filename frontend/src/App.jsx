@@ -4,7 +4,7 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Dashboard from "./pages/Dashboard";
 import Profile from "./pages/Profile";
-import Donate from "./pages/Donate";
+import Donate from "./pages/Donations";
 import Navbar from "./components/Navbar";
 
 const App = () => {
