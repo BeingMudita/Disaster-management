@@ -1,13 +1,10 @@
-import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import LandingPage from "./pages/LandingPage";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
-import Dashboard from "./pages/Dashboard";
-import Donations from "./pages/Donations";
-import Shelters from "./pages/Shelter";
-import Alerts from "./pages/Alerts";
-import CreateShelter from "./pages/CreateAlerts";
+import MapPage from "./pages/MapPage"; // Import Map Page
+import UserDashboard from "./pages/UserDashboard"; // Import User Dashboard
+import NgoDashboard from "./pages/NgoDashboard"; // Import NGO Dashboard
 
 function App() {
   return (
@@ -16,11 +13,9 @@ function App() {
         <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/donations" element={<Donations />} />
-        <Route path="/shelters" element={<Shelters />} />
-        <Route path="/alerts" element={<Alerts />} />
-        <Route path="/create-shelter" element={<CreateShelter />} />
+        <Route path="/map" element={<MapPage />} /> {/* Map Page Route */}
+        <Route path="/user-dashboard" element={<UserDashboard />} /> {/* User Dashboard */}
+        <Route path="/ngo-dashboard" element={<NgoDashboard />} /> {/* NGO Dashboard */}
       </Routes>
     </Router>
   );

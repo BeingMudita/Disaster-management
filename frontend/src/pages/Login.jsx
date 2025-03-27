@@ -1,40 +1,53 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { loginUser } from "../utils/api";
-import "../styles/auth.css";
+import { Link } from "react-router-dom";
+import DarkModeToggle from "../components/DarkModeToggle";
+import LanguageSelector from "../components/LanguageSelector";
+import "../index.css";
 
 const Login = () => {
   const [formData, setFormData] = useState({ email: "", password: "" });
-  const [error, setError] = useState("");
-  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    try {
-      const data = await loginUser(formData);
-      localStorage.setItem("token", data.accessToken);
-      alert("Login successful!");
-      navigate("/dashboard"); // Redirect to dashboard
-    } catch (err) {
-      setError(err.message);
-    }
+    console.log("Login Attempted", formData);
   };
 
   return (
-    <div className="auth-container">
-      <div className="auth-box">
+    <div className="login-page">
+      {/* Language Selector & Dark Mode */}
+      <div className="top-right-controls">
+        <LanguageSelector />
+        <DarkModeToggle />
+      </div>
+
+      <div className="login-container">
         <h2>Login</h2>
-        {error && <p className="error">{error}</p>}
         <form onSubmit={handleSubmit}>
-          <input type="email" name="email" placeholder="Email" onChange={handleChange} required />
-          <input type="password" name="password" placeholder="Password" onChange={handleChange} required />
-          <button type="submit" className="auth-btn">Login</button>
+          <input
+            type="email"
+            name="email"
+            placeholder="Email"
+            value={formData.email}
+            onChange={handleChange}
+            required
+          />
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            value={formData.password}
+            onChange={handleChange}
+            required
+          />
+          <button type="submit">Login</button>
         </form>
-        <p>Don't have an account? <Link to="/signup">Sign up</Link></p>
+        <p>
+          Don't have an account? <Link to="/signup">Sign up</Link>
+        </p>
       </div>
     </div>
   );

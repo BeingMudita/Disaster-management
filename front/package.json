@@ -1,5 +1,5 @@
 {
-  "name": "disaster-management-app",
+  "name": "frontend",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -11,13 +11,8 @@
   },
   "dependencies": {
     "axios": "^1.8.4",
-    "bootstrap": "^5.3.3",
-    "express": "^4.21.2",
-    "leaflet": "^1.9.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-fast-marquee": "^1.6.5",
-    "react-leaflet": "^5.0.0",
     "react-router-dom": "^7.4.0"
   },
   "devDependencies": {
@@ -25,10 +20,13 @@
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
     "@vitejs/plugin-react": "^4.3.4",
+    "autoprefixer": "^10.4.21",
     "eslint": "^9.21.0",
     "eslint-plugin-react-hooks": "^5.1.0",
     "eslint-plugin-react-refresh": "^0.4.19",
     "globals": "^15.15.0",
+    "postcss": "^8.5.3",
+    "tailwindcss": "^4.0.16",
     "vite": "^6.2.0"
   }
 }
